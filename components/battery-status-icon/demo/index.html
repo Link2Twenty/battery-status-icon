@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>battery-status-icon demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../battery-status-icon.html">
+    <link rel="import" href="../../paper-card/paper-card.html">
+    <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
+    <style>
+      body {
+        background-color: #F9F9F9;
+      }
+      .container {
+        width: 100%;
+        text-align: center;
+      }
+      paper-card {
+        text-align: left;
+        padding: 1em;
+        margin: 1em;
+      }
+    </style>
+    <style is="custom-style">
+      .changing-example {
+        --battery-low-color: #D32F2F;
+        --battery-mid-color: #F57C00;
+        --battery-high-color: #388E3C;
+        --battery-icon-size: 48px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <paper-card>
+        <table>
+          <thead>
+          <th></th>
+          <th>Sample</th>
+          <th>Code</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Default</td>
+              <td>
+                <battery-status-icon></battery-status-icon>
+              </td>
+              <td>
+                <pre>&lt;battery-status-icon&gt;&lt;/battery-status-icon&gt;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td>Manually set to 33% and charging</td>
+              <td>
+                <battery-status-icon level="33" charging></battery-status-icon>
+              </td>
+              <td>
+                <pre>&lt;battery-status-icon level="33" charging&gt;&lt;/battery-status-icon&gt;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td>Manually set to 15% with label</td>
+              <td>
+                <battery-status-icon level="15" show-label></battery-status-icon>
+              </td>
+              <td>
+                <pre>&lt;battery-status-icon level="15" show-label&gt;&lt;/battery-status-icon&gt;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td>Manually set to 66%</td>
+              <td>
+                <battery-status-icon level="66"></battery-status-icon>
+              </td>
+              <td>
+                <pre>&lt;battery-status-icon level="66"&gt;&lt;/battery-status-icon&gt;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td>Manually set to 20% with colors</td>
+              <td>
+                <battery-status-icon color-levels level="20"></battery-status-icon>
+              </td>
+              <td>
+                <pre>&lt;battery-status-icon color-levels level="20"&gt;&lt;/battery-status-icon&gt;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td>Manually set to 50% with colors</td>
+              <td>
+                <battery-status-icon color-levels level="50"></battery-status-icon>
+              </td>
+              <td>
+                <pre>&lt;battery-status-icon color-levels level="50"&gt;&lt;/battery-status-icon&gt;</pre>
+              </td>
+              </tr>
+            <tr>
+              <td>Manually set to 80% with colors</td>
+              <td>
+                <battery-status-icon color-levels level="80"></battery-status-icon>
+              </td>
+              <td>
+                <pre>&lt;battery-status-icon color-levels level="80"&gt;&lt;/battery-status-icon&gt;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td>Autodetect using Navigator.getBattery() API<br>with label and colors</td>
+              <td>
+                <battery-status-icon autodetect color-levels show-label></battery-status-icon>
+              </td>
+              <td>
+                <pre>&lt;battery-status-icon autodetect color-levels show-label&gt;&lt;/battery-status-icon&gt;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td>This example uses custom styles<br>Updating the level using JS with colors</td>
+              <td>
+                <battery-status-icon class="changing-example" level="100" color-levels></battery-status-icon>
+              </td>
+              <td>
+                <pre>&lt;battery-status-icon class="changing-example" level="100" color-levels&gt;&lt;/battery-status-icon&gt;</pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </paper-card>
+    </div>
+    <script>
+      setInterval(function() {
+        curLevel = document.querySelector(".changing-example").getAttribute("level");
+        nexLevel = curLevel > 0 ? curLevel - 10 : 100;
+        document.querySelector(".changing-example").setAttribute("level",nexLevel);
+      }, 300);
+    </script>
+  </body>
+</html>
